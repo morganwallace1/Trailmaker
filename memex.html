@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>Delicious Trailmaker</title>
+
+        <!-- Google-hosted jQuery -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+        <!-- Google-hosted jQuery UI -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+
+		<style type="text/css">
+		    
+		</style>
+
+		<script type="text/javascript">
+		    
+		</script>
+	</head>
+<body>
+	<div id="page">
+		<h1>Delicious Trailmaker</h1>
+
+		<form id="load-bookmarks" action="trail_maker_submit" method="get" accept-charset="utf-8">
+			<h2>Enter any Delicious username:</h2>
+			<input type="text" name="username" id="username" value="" />
+			<input type="submit" value="Get Bookmarks" />
+		</form>
+
+		<div id="bookmarks">
+			<h2>Bookmarks</h2>
+			<ul></ul>
+		</div>
+
+		<div id="new-trail">
+			<h2>New Trail</h2>
+			<ul></ul>
+            <form id="save-trail" action="" method="post">
+    			<label for="save-username">Username: </label><input id="save-username" type="text" name="save-username" /><br />
+    			<label for="save-password">Password: </label><input id="save-password" type="password" name="save-password" /><br />
+    			<input type="submit" name="make-trail" value="Make New Trail" id="make-trail" />
+            </form>
+		</div>
+	</div>
+</body>
+</html>
