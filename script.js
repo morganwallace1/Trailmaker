@@ -30,7 +30,8 @@
 						$('#bookmarks').droppable({
 						accept: 'li',
 						drop: function(event, ui){
-						$(ui.draggable.css({top: '0px', left: '0px'}).appendTo('#bookmarks ul');
+
+						$(ui.draggable.css({top: '0px', left: '0px'}).appendTo('#bookmarks ul'));
 						}
 						});
                     });
