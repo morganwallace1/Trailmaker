@@ -3,8 +3,9 @@
 
 		    // When users click on a link, open it in a new window
 		    $('a').live('click', function() {
-		        window.open($(this).attr('href'));
-	            return false;
+		       // window.open($(this).attr('href'));
+	            $('iframe').prop("src", $(this).attr('href'));
+                return false;
 		    });
 
             $(document).ready(function() {
@@ -20,6 +21,8 @@
                             // this.d // description
                             // this.n // extended notes
                             // this.t // array of tags
+                            //console.log(this.d);
+                            //console.log(this.n);
                             $('<li></li>').html('<a href="' + this.u + '">' + this.d + '</a>')
 								.data('extended', this.n)
 								.data('tags', this.t)
