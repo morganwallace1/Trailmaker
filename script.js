@@ -29,8 +29,18 @@
 								.appendTo('#bookmarks ul');
                         });
 						$('#bookmarks li').draggable({revert: true});
+						//Code to move links back to Bokmarks List
+						$('#bookmarks').droppable({
+						accept: 'li',
+						drop: function(event, ui){
+
+						$(ui.draggable.css({top: '0px', left: '0px'}).appendTo('#bookmarks ul'));
+						}
+						});
                     });
+
                     return false;
+
                 });
 
                 // Use jQuery UI to make the #new-trail div droppable
@@ -38,8 +48,7 @@
 					accept: 'li',
 					drop: function(event, ui) {
 					    // Don't confuse ul, the <ul> unordered-list with ui, the user interface element
-					    // .draggable('disable') says that we want to remove the draggable behavior
-						$(ui.draggable).draggable('disable').css({top: '0px', left: '0px'}).appendTo('#new-trail ul');
+					$(ui.draggable).css({top: '0px', left: '0px'}).appendTo('#new-trail ul');
 					}
 				});
 
