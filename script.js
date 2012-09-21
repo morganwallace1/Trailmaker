@@ -21,11 +21,22 @@
                             // this.d // description
                             // this.n // extended notes
                             // this.t // array of tags
-                            //console.log(this.d);
-                            //console.log(this.n);
+                            // this.dt //Date 
+                            console.log(this.d);
+                            console.log(this.n);
+                            console.log(this.t);
+                            //console.log(this.a);
+                            //ash
+                            //var date = this.dt.split("T");
+                            //var created_date = date[0];
+                            //console.log(this.a);
+                            //
                             $('<li></li>').html('<a href="' + this.u + '">' + this.d + '</a>')
 								.data('extended', this.n)
 								.data('tags', this.t)
+                                //ash
+                                //.data('user_name', user_name)
+                                //
 								.appendTo('#bookmarks ul');
                         });
 						$('#bookmarks li').draggable({revert: true});
@@ -96,7 +107,12 @@
                     url: bookmark.find('a').attr('href'),
                     description: bookmark.find('a').text(),
                     extended: bookmark.data('extended'),
-                    tags: (bookmark.data('tags') == "" ? "" : bookmark.data('tags').join(',') + ',') + newTrailName + ',' + 'step:' + delicious.stepNum,
+                    //if(bookmark.data('user_name') === delicious.username){
+                    //tags: (bookmark.data('tags') == "" ? "" : bookmark.data('tags').join(',') + ',') + newTrailName + ',' + 'step:' + delicious.stepNum,
+                    //tags: bookmark.data('tags').join(',') + ',' + newTrailName + ',' + 'step:' + delicious.stepNum,
+                    //else{
+					tags: 'Name:' + delicious.username + ',' + newTrailName + ',' + 'step:' + delicious.stepNum,
+                    //}
                     method: 'posts/add',
                     username: delicious.username,
                     password: delicious.password
@@ -129,3 +145,4 @@
                     }
                 });
             }
+
