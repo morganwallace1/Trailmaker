@@ -5,6 +5,8 @@
 		    $('a').live('click', function() {
 		       // window.open($(this).attr('href'));
 	            $('iframe').prop("src", $(this).attr('href'));
+                $('iframe').prop("title", $(this).text());
+                console.log($('iframe').prop("title", $(this).text()));
                 return false;
 		    });
 
@@ -12,10 +14,13 @@
 
                 // Load bookmarks for the specified user when the #load-bookmarks form is submitted
                 $('#load-bookmarks').submit(function() {
+
                     var username = $('#username').val();
                     // This cross-domain request requires that you use '?callback=?' because it is done using JSONP
+                    
                     $.getJSON('http://feeds.delicious.com/v2/json/' + username + '?callback=?',
                      function(json){
+
                         $(json).each(function(index) {
                             // this.u // url
                             // this.d // description
@@ -28,17 +33,24 @@
 								.data('tags', this.t)
 								.appendTo('#bookmarks ul');
                         });
-						$('#bookmarks li').draggable({revert: true});
-						//Code to move links back to Bokmarks List
+						
+                        $('#bookmarks li').draggable({revert: true});
+						
+                        //Code to move links back to Bokmarks List
 						$('#bookmarks').droppable({
 						accept: 'li',
-						drop: function(event, ui){
+						
+                        drop: function(event, ui){
 
-						$(ui.draggable.css({top: '0px', left: '0px'}).appendTo('#bookmarks ul'));
-						}
-						});
+						  $(ui.draggable.css({top: '0px', left: '0px'}).appendTo('#bookmarks ul'));
+						  }
+                          
+                        });
+
+						
                     });
-
+                    
+                    //to suppress submit button default operation
                     return false;
 
                 });
@@ -70,9 +82,66 @@
                     return false;
             	});
 
+                $('#add-note').submit(function() {
+
+                    $('#trailnotes').data('extended',$('#trailnotes').val());
+                    delicious.username = $('#save-username').val();
+                    delicious.password = $('#save-password').val();
+
+                    postNote();
+                    return false;
+                });
+
+
+
                 // Allow the user to rearrange the list of bookmarks in the new trail
 				$('#new-trail ul').sortable();
+            
+
+            /* $('#transfer').click(function(){
+                $('#bookmarks').hide('slow');
+                $('#new-trail').hide('slow');
+                console.log("I'm hiding!?");
+
+             });
+            */
+
+
             });
+
+            function postNote () {
+                // Assemble the data to send to Delicious
+                var postData = {
+                    url: bookmark.find('iframe').attr('src'),
+                    description: bookmark.find('iframe').attr('tittle'),
+                    extended: bookmark.data('extended'),
+                    tags: (bookmark.data('tags') == "" ? "" : bookmark.data('tags').join(',') + ',') + newTrailName + ',' + 'step:' + delicious.stepNum,
+                    method: 'posts/add',
+                    username: delicious.username,
+                    password: delicious.password
+                };
+
+                console.log(postData);
+
+                $.getJSON("http://courses.ischool.berkeley.edu/i290-iol/f12/resources/trailmaker/delicious_proxy.php?callback=?",
+                postData,
+                 function(rsp){
+                    if (rsp.result_code === "access denied") {
+                        alert('The provided Delicious username and password are incorrect.');
+                    } else if (rsp.result_code === "something went wrong") {
+                        alert('There was an unspecified error communicating with Delicious.');
+                    } else if (rsp.result_code === "done") {
+                        // Bookmark was saved properly
+                      
+                            alert ("Your trail has been saved!");
+
+
+                        }
+                    
+                });
+
+            }
+
 
             function saveTrail () {
                 // We need to keep track of which bookmark number we are saving, so we

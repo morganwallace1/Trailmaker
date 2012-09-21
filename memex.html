@@ -19,14 +19,21 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
         <!-- Google-hosted jQuery UI -->
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+        <script src="/Users/derekkan/Documents/MIMS 2014/Fall 2012/INFO 290TA/Trailmaker/jquery.min.js"></script>
 
 		<script type="text/javascript" src ="script.js">
 		    
 		</script>
 	</head>
 <body>
-	<div id="page">
-		<h1>Delicious Trailmaker</h1>
+
+    <div id="header">
+        <h1>MEMEX</h1>
+        <p>Remember what you can't</p>
+    </div>
+
+	<div id="transfer">
+		
 
 		<form id="load-bookmarks" action="trail_maker_submit" method="get" accept-charset="utf-8">
 			<h2>Enter any Delicious username:</h2>
@@ -52,12 +59,17 @@
 
     <div id="preview">
         <div id="view">
-        <iframe src="http://www.google.com" height="500px" width="100%">View your trails in this frame.</iframe> 
+        <h2>Your viewer</h2>  
+        <iframe src="http://www.google.com" title="" height="505px" width="98%">View your trails in this frame.</iframe> 
         </div>
 
         <div id="notes">
+
             <form id="add-note" action="" method="post">
-                <TEXTAREA NAME="Address" ROWS=10 COLS="50%" value="Enter your thoughts..."></TEXTAREA><br />
+                <h2>Add some notes</h2>
+                <p>A place to jot your thoughts about what's in your viewer</p>
+                <p>When you're done just click "Add note to trail" to append these thoughts to the trail associated with the item in your viewer.</p>
+                <TEXTAREA id="trail_notes" ROWS=28 COLS="50%" value="Enter your thoughts..."></TEXTAREA><br />
                 <input type="submit" name="create-note" value="Add Note to Trail" id="create-note"/>
         </div>
 
