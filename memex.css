@@ -1,13 +1,47 @@
 
 #bookmarks, #new-trail, #view, #notes, #page2{
 		        float: left;
-		        width: 48%;
-		        margin-right: 1%;
+		        text-align: center;
+		        width: 47%;
+		        margin: 1%;
 		        min-height: 300px;
 		        border: 1px solid #666;
+		        background-color: #ffffff;
 		    }
 
-		    form {
+#new-trail, #notes {
+				float: right;
+		        text-align: center;
+		        width: 47%;
+		        margin: 1%;
+		        min-height: 300px;
+		        border: 1px solid #666;
+		        background-color: #ffffff;
+
+}
+
+ul {
+	text-align: left;
+
+}
+
+
+form {
 		        margin-bottom: 20px;
-		    }
+}
+
+#header, #transfer, #preview{
+	float: left;
+	text-align: center;
+	width: 98%;
+	margin: 1%;
+	border: 1px solid #666;
+	background-color: #ffffff;
+}
+
+body {
+	background-image: url('brain_bkg.gif');
+	background-color:#000000;
+	
+}
 
