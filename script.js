@@ -14,7 +14,7 @@
 
                 // Load bookmarks for the specified user when the #load-bookmarks form is submitted
                 $('#load-bookmarks').submit(function() {
-
+                    var count = 1;
                     var username = $('#username').val();
                     // This cross-domain request requires that you use '?callback=?' because it is done using JSONP
                     
@@ -39,11 +39,13 @@
                             $('<li></li>').html('<a href="' + this.u + '">' + this.d + '</a>')
 								.data('extended', this.n)
 								.data('tags', this.t)
-                                //ash
-                                //.data('user_name', user_name)
-                                //
 								.appendTo('#bookmarks ul');
                         });
+                        if(count = 1)
+                        {
+                            alert("here");
+                            savedtrail(this.t[0]);
+                        }
 						
                         $('#bookmarks li').draggable({revert: true});
 						
@@ -60,7 +62,7 @@
 
 						
                     });
-                    
+                    count = count + 1;
                     //to suppress submit button default operation
                     return false;
 
@@ -180,13 +182,21 @@
                     //tags: (bookmark.data('tags') == "" ? "" : bookmark.data('tags').join(',') + ',') + newTrailName + ',' + 'step:' + delicious.stepNum,
                     //tags: bookmark.data('tags').join(',') + ',' + newTrailName + ',' + 'step:' + delicious.stepNum,
                     //else{
-					tags: 'Name:' + delicious.username + ',' + newTrailName + ',' + 'step:' + delicious.stepNum,
+					tags: newTrailName + ',' + 'step:' + delicious.stepNum,
                     //}
                     method: 'posts/add',
                     username: delicious.username,
                     password: delicious.password
                 };
 
+                    function savedtrail(trail){
+                    //Ashley: Adding trails to the Saved Trails form   
+                    alert(trail);
+                    $('<li></li>').html('<button id="trail-button' + count +'">' + trail + '</button>')
+                    //.data('extended', this.n)
+                    //.data('tags', this.t)
+                    .appendTo('#your-saved-trails ul');
+					};
                 // Send the data to Delicious through a proxy and handle the response
                 // Use $.post if the script is located on the same server
                 // Otherwise, use $.get to avoid cross-domain problems
