@@ -104,8 +104,8 @@
                 // Allow the user to rearrange the list of bookmarks in the new trail
 				$('#new-trail ul').sortable();
             
-
-            /* $('#transfer').click(function(){
+            /*
+             $('#transfer').click(function(){
                 $('#bookmarks').hide('slow');
                 $('#new-trail').hide('slow');
                 console.log("I'm hiding!?");
@@ -120,14 +120,19 @@
                 // Assemble the data to send to Delicious
                 var postData = {
 
-                    url: $('iframe').prop("src", $(this).attr('href')),
-                    description: $('iframe').prop("title", $(this).text()),
+                    url: $('iframe').prop("src"),
+                    description: $('iframe').prop("title"),
                     extended: $('#trail_notes').val(),
                     tags: '',//(bookmark.data('tags') == "" ? "" : bookmark.data('tags').join(',') + ',') + newTrailName + ',' + 'step:' + delicious.stepNum,
                     method: 'posts/add',
                     username: delicious.username,
                     password: delicious.password
                 };
+                
+                console.log(delicious.username);
+                console.log(delicious.password);
+                console.log($('iframe').prop("src"));
+                console.log($('iframe').prop("title"));
                 console.log($('#trail_notes').val());
                 console.log(postData);
                 console.log("i'm in postNote function");
