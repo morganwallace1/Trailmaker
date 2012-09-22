@@ -12,8 +12,12 @@
 
             $(document).ready(function() {
 
+                $('#out').hide();
+
                 // Load bookmarks for the specified user when the #load-bookmarks form is submitted
-                $('#load-bookmarks').submit(function() {
+                $('#load-bookmark').submit(function() {
+
+                    //console.log("i'm in load-bookmark submit call");
 
                     var username = $('#username').val();
                     // This cross-domain request requires that you use '?callback=?' because it is done using JSONP
@@ -64,7 +68,9 @@
 					}
 				});
 
-                $('#save-trail').submit(function() {
+
+
+                $('#save-trails').submit(function() {
                 	// Let's ask the user for a name for the trail
                 	// We are storing the name that the user enters as the text of the
                 	// h2 in the #new-trail div
@@ -74,13 +80,40 @@
                     // Store the username and password to send with each request
                     // This isn't the best security practice, but we do it here
                     // in the interest of brevity
-                    delicious.username = $('#save-username').val();
-                    delicious.password = $('#save-password').val();
+                    
                     delicious.stepNum = 0;
 
                     saveTrail();
                     return false;
             	});
+
+
+                $('#sign-in').submit(function(){
+                    delicious.username = $('#save-username').val();
+                    delicious.password = $('#save-password').val();
+
+                    //console.log(delicious.username);
+                    //console.log(delicious.password);
+
+                    $('#in').hide('fast');
+                    $('#user').append(delicious.username);
+                    $('#out').show('fast');
+                 ;
+                    return false;
+
+                });
+
+                $('#log-out').click(function(){
+                    //console.log("i'm in log out button click");
+                    $('#save-username').val(null);
+                    $('#save-password').val(null);
+                    $('#user').text('');
+                    $('#in').show('fast');
+                    $('#out').hide('fast');
+
+                });
+
+
 
                 $('#add-note').submit(function(event) {
 
