@@ -82,12 +82,19 @@
                     return false;
             	});
 
-                $('#add-note').submit(function() {
+                $('#add-note').submit(function(event) {
+
+                    event.preventDefault();
 
                     $('#trailnotes').data('extended',$('#trailnotes').val());
                     delicious.username = $('#save-username').val();
                     delicious.password = $('#save-password').val();
 
+                    console.log("trying to create note");
+                    console.log(delicious.username);
+                    console.log(delicious.password);
+
+                    //$.delay(1000);
                     postNote();
                     return false;
                 });
@@ -112,20 +119,26 @@
             function postNote () {
                 // Assemble the data to send to Delicious
                 var postData = {
-                    url: bookmark.find('iframe').attr('src'),
-                    description: bookmark.find('iframe').attr('tittle'),
-                    extended: bookmark.data('extended'),
-                    tags: (bookmark.data('tags') == "" ? "" : bookmark.data('tags').join(',') + ',') + newTrailName + ',' + 'step:' + delicious.stepNum,
+
+                    url: $('iframe').prop("src", $(this).attr('href')),
+                    description: $('iframe').prop("title", $(this).text()),
+                    extended: $('#trail_notes').val(),
+                    tags: '',//(bookmark.data('tags') == "" ? "" : bookmark.data('tags').join(',') + ',') + newTrailName + ',' + 'step:' + delicious.stepNum,
                     method: 'posts/add',
                     username: delicious.username,
                     password: delicious.password
                 };
-
+                console.log($('#trail_notes').val());
                 console.log(postData);
+                console.log("i'm in postNote function");
 
                 $.getJSON("http://courses.ischool.berkeley.edu/i290-iol/f12/resources/trailmaker/delicious_proxy.php?callback=?",
                 postData,
+
                  function(rsp){
+
+                    console.log("i'm checking some stuff");
+
                     if (rsp.result_code === "access denied") {
                         alert('The provided Delicious username and password are incorrect.');
                     } else if (rsp.result_code === "something went wrong") {
@@ -137,6 +150,8 @@
 
 
                         }
+
+                    console.log("almost done");
                     
                 });
 
