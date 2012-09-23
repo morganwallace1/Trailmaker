@@ -33,23 +33,43 @@
 <body>
 
     <div id="header">
-        <h1>MEMEX</h1>
-        <p>Remember what you can't</p>
 
-        <div id="sign-in">
-            
-            
+        <div id="spacer">
+        </div>
+
+        <div id="title">
+        
+            <h1>MEMEX</h1>
+            <p>Remember what you can't</p>
+
+        </div>
+        
+        <div id="access">
+
+            <div id ="in">
+            <form id="sign-in" action="" method="post">
+                <label for="save-username">Username: </label><input id="save-username" type="text" name="save-username" /><br />
+                <label for="save-password">Password:  </label><input id="save-password" type="password" name="save-password" /><br />
+                <input type="submit" name="Log into Delicious" value="Log into Delicious via Memex" id="log-in" />
+            </form>
+            </div>
+
+            <div id = "out">
+                <p>Happy Trails <span id="user"> </span>!</p>
+                <input type ="button" id="log-out" value = "Sign out" />
+             </div>
         </div>
     </div>
 
 	<div id="transfer">
 		
-
-		<form id="load-bookmarks" action="trail_maker_submit" method="get" accept-charset="utf-8">
+        <div id="get-bookmarks">
+		<form id="load-bookmark" action="trail_maker_submit" method="get" accept-charset="utf-8">
 			<h2>Enter any Delicious username:</h2>
 			<input type="text" name="username" id="username" value="" />
 			<input type="submit" value="Get Bookmarks" />
 		</form>
+        </div>
 
 		<div id="bookmarks">
 			<h2>Bookmarks</h2>
@@ -59,12 +79,12 @@
 		<div id="new-trail">
 			<h2>New Trail</h2>
 			<ul></ul>
-            <form id="save-trail" action="" method="post">
-    			<label for="save-username">Username: </label><input id="save-username" type="text" name="save-username" /><br />
-    			<label for="save-password">Password: </label><input id="save-password" type="password" name="save-password" /><br />
-    			<input type="submit" name="make-trail" value="Make New Trail" id="make-trail" />
+            
+            <form id="save-trails" action ="" method="post">
+                <input type='submit' name = "make-trail" id="make-trail" value = "Make New Trail" />
             </form>
 		</div>
+
 	</div>
 
 	<div id="saved-trail">

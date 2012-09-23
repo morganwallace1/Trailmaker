@@ -12,22 +12,26 @@
 
             $(document).ready(function() {
 
+                $('#out').hide();
+
                 // Load bookmarks for the specified user when the #load-bookmarks form is submitted
-                $('#load-bookmarks').submit(function() {
+                $('#load-bookmark').submit(function() {
+
+                    //console.log("i'm in load-bookmark submit call");
+
                     var username = $('#username').val();
                     // This cross-domain request requires that you use '?callback=?' because it is done using JSONP
+
                     $.getJSON('http://feeds.delicious.com/v2/json/' + username + '?callback=?',
                      function(json){
+
                         $(json).each(function(index) {
                             // this.u // url
                             // this.d // description
                             // this.n // extended notes
                             // this.t // array of tags
-                            // this.dt //Date 
-                            console.log(this.d);
-                            console.log(this.n);
-                            console.log(this.t);
-                            console.log(this.t[0].split(":"));
+                            //console.log(this.d);
+                            //console.log(this.n);
 
                             //Ashley: Code to retrieve the User's Saved Trails
                             $('<li></li>').html('<a href="' + this.u + '">' + this.d + '</a>')
@@ -65,11 +69,14 @@
 					accept: 'li',
 					drop: function(event, ui) {
 					    // Don't confuse ul, the <ul> unordered-list with ui, the user interface element
+                        //Ashley: Modified Code to move links back to Bokmarks List
 					$(ui.draggable).css({top: '0px', left: '0px'}).appendTo('#new-trail ul');
 					}
 				});
 
-                $('#save-trail').submit(function() {
+
+
+                $('#save-trails').submit(function() {
                 	// Let's ask the user for a name for the trail
                 	// We are storing the name that the user enters as the text of the
                 	// h2 in the #new-trail div
@@ -79,13 +86,40 @@
                     // Store the username and password to send with each request
                     // This isn't the best security practice, but we do it here
                     // in the interest of brevity
-                    delicious.username = $('#save-username').val();
-                    delicious.password = $('#save-password').val();
+                    
                     delicious.stepNum = 0;
 
                     saveTrail();
                     return false;
             	});
+
+
+                $('#sign-in').submit(function(){
+                    delicious.username = $('#save-username').val();
+                    delicious.password = $('#save-password').val();
+
+                    //console.log(delicious.username);
+                    //console.log(delicious.password);
+
+                    $('#in').hide('fast');
+                    $('#user').append(delicious.username);
+                    $('#out').show('fast');
+                 ;
+                    return false;
+
+                });
+
+                $('#log-out').click(function(){
+                    //console.log("i'm in log out button click");
+                    $('#save-username').val(null);
+                    $('#save-password').val(null);
+                    $('#user').text('');
+                    $('#in').show('fast');
+                    $('#out').hide('fast');
+
+                });
+
+
 
                 $('#add-note').submit(function(event) {
 
