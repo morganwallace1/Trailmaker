@@ -28,12 +28,8 @@
                             console.log(this.n);
                             console.log(this.t);
                             console.log(this.t[0].split(":"));
-                            //console.log(this.a);
-                            //ash
-                            //var date = this.dt.split("T");
-                            //var created_date = date[0];
-                            //console.log(this.a);
-                            //
+
+                            //Ashley: Code to retrieve the User's Saved Trails
                             $('<li></li>').html('<a href="' + this.u + '">' + this.d + '</a>')
                                 .data('extended', this.n)
                                 .data('tags', this.t)
@@ -43,19 +39,14 @@
                                 .appendTo('#bookmarks ul');
                             
                             var trail_name = this.t[0].split(":");
-                            //if(trail_name === this.t[0].split(":")){
-                            trail_name = this.t[0].split(":");
-                            $('<li></li>').html(trail_name[1])
+                            var step_name = this.t[1];
+
+                            $('<li></li>').html(trail_name[1] + "-" + step_name)
                                           .appendTo('#trail-list');
 
-                            var step_name = this.t[1];
-                            $('<li></li>').html(step_name)
-                                          .appendTo('#step-list');
-
-                            //}
                         });
                         $('#bookmarks li').draggable({revert: true});
-                        //Code to move links back to Bokmarks List
+                        //Ashley: Code to move links back to Bokmarks List
                         $('#bookmarks').droppable({
                         accept: 'li',
                         drop: function(event, ui){
