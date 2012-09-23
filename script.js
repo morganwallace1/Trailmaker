@@ -14,13 +14,10 @@
 
                 // Load bookmarks for the specified user when the #load-bookmarks form is submitted
                 $('#load-bookmarks').submit(function() {
-                    var count = 1;
                     var username = $('#username').val();
                     // This cross-domain request requires that you use '?callback=?' because it is done using JSONP
-                    
                     $.getJSON('http://feeds.delicious.com/v2/json/' + username + '?callback=?',
                      function(json){
-
                         $(json).each(function(index) {
                             // this.u // url
                             // this.d // description
@@ -30,6 +27,7 @@
                             console.log(this.d);
                             console.log(this.n);
                             console.log(this.t);
+                            console.log(this.t[0].split(":"));
                             //console.log(this.a);
                             //ash
                             //var date = this.dt.split("T");
@@ -37,33 +35,36 @@
                             //console.log(this.a);
                             //
                             $('<li></li>').html('<a href="' + this.u + '">' + this.d + '</a>')
-								.data('extended', this.n)
-								.data('tags', this.t)
-								.appendTo('#bookmarks ul');
+                                .data('extended', this.n)
+                                .data('tags', this.t)
+                                //ash
+                                //.data('user_name', user_name)
+                                //
+                                .appendTo('#bookmarks ul');
+                            
+                            var trail_name = this.t[0].split(":");
+                            //if(trail_name === this.t[0].split(":")){
+                            trail_name = this.t[0].split(":");
+                            $('<li></li>').html(trail_name[1])
+                                          .appendTo('#trail-list');
+
+                            var step_name = this.t[1];
+                            $('<li></li>').html(step_name)
+                                          .appendTo('#step-list');
+
+                            //}
                         });
-                        if(count = 1)
-                        {
-                            alert("here");
-                            savedtrail(this.t[0]);
-                        }
-						
                         $('#bookmarks li').draggable({revert: true});
-						
                         //Code to move links back to Bokmarks List
-						$('#bookmarks').droppable({
-						accept: 'li',
-						
+                        $('#bookmarks').droppable({
+                        accept: 'li',
                         drop: function(event, ui){
 
-						  $(ui.draggable.css({top: '0px', left: '0px'}).appendTo('#bookmarks ul'));
-						  }
-                          
+                        $(ui.draggable.css({top: '0px', left: '0px'}).appendTo('#bookmarks ul'));
+                        }
                         });
-
-						
                     });
-                    count = count + 1;
-                    //to suppress submit button default operation
+
                     return false;
 
                 });
@@ -95,12 +96,19 @@
                     return false;
             	});
 
-                $('#add-note').submit(function() {
+                $('#add-note').submit(function(event) {
+
+                    event.preventDefault();
 
                     $('#trailnotes').data('extended',$('#trailnotes').val());
                     delicious.username = $('#save-username').val();
                     delicious.password = $('#save-password').val();
 
+                    console.log("trying to create note");
+                    console.log(delicious.username);
+                    console.log(delicious.password);
+
+                    //$.delay(1000);
                     postNote();
                     return false;
                 });
@@ -110,8 +118,8 @@
                 // Allow the user to rearrange the list of bookmarks in the new trail
 				$('#new-trail ul').sortable();
             
-
-            /* $('#transfer').click(function(){
+            /*
+             $('#transfer').click(function(){
                 $('#bookmarks').hide('slow');
                 $('#new-trail').hide('slow');
                 console.log("I'm hiding!?");
@@ -125,20 +133,31 @@
             function postNote () {
                 // Assemble the data to send to Delicious
                 var postData = {
-                    url: bookmark.find('iframe').attr('src'),
-                    description: bookmark.find('iframe').attr('tittle'),
-                    extended: bookmark.data('extended'),
-                    tags: (bookmark.data('tags') == "" ? "" : bookmark.data('tags').join(',') + ',') + newTrailName + ',' + 'step:' + delicious.stepNum,
+
+                    url: $('iframe').prop("src"),
+                    description: $('iframe').prop("title"),
+                    extended: $('#trail_notes').val(),
+                    tags: '',//(bookmark.data('tags') == "" ? "" : bookmark.data('tags').join(',') + ',') + newTrailName + ',' + 'step:' + delicious.stepNum,
                     method: 'posts/add',
                     username: delicious.username,
                     password: delicious.password
                 };
-
+                
+                console.log(delicious.username);
+                console.log(delicious.password);
+                console.log($('iframe').prop("src"));
+                console.log($('iframe').prop("title"));
+                console.log($('#trail_notes').val());
                 console.log(postData);
+                console.log("i'm in postNote function");
 
                 $.getJSON("http://courses.ischool.berkeley.edu/i290-iol/f12/resources/trailmaker/delicious_proxy.php?callback=?",
                 postData,
+
                  function(rsp){
+
+                    console.log("i'm checking some stuff");
+
                     if (rsp.result_code === "access denied") {
                         alert('The provided Delicious username and password are incorrect.');
                     } else if (rsp.result_code === "something went wrong") {
@@ -150,6 +169,8 @@
 
 
                         }
+
+                    console.log("almost done");
                     
                 });
 
@@ -189,7 +210,7 @@
                     password: delicious.password
                 };
 
-                    function savedtrail(trail){
+                   /* function savedtrail(trail){
                     //Ashley: Adding trails to the Saved Trails form   
                     alert(trail);
                     $('<li></li>').html('<button id="trail-button' + count +'">' + trail + '</button>')
@@ -197,6 +218,8 @@
                     //.data('tags', this.t)
                     .appendTo('#your-saved-trails ul');
 					};
+                    */
+
                 // Send the data to Delicious through a proxy and handle the response
                 // Use $.post if the script is located on the same server
                 // Otherwise, use $.get to avoid cross-domain problems

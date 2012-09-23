@@ -1,5 +1,5 @@
 
-#bookmarks, #new-trail, #view, #notes, #page2{
+#bookmarks, #new-trail, #view, #notes{
 		        float: left;
 		        text-align: center;
 		        width: 47%;
@@ -30,7 +30,7 @@ form {
 		        margin-bottom: 20px;
 }
 
-#header, #transfer, #preview{
+#header, #transfer, #preview, #saved-trail{
 	float: left;
 	text-align: center;
 	width: 98%;
