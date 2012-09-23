@@ -20,6 +20,32 @@
 
 }
 
+#access{
+	float: right;
+	text-align: right;
+	width: 20%;
+	margin: 2%;
+}
+
+#spacer{
+	float: left;
+	text-align: right;
+	width: 20%;
+	margin: 2%;
+}
+
+
+#title {
+	float: left;
+	text-align: center;
+	width: 50%;
+}
+
+#get-bookmarks {
+	float: center;
+	width: 100%;
+}
+
 ul {
 	text-align: left;
 
