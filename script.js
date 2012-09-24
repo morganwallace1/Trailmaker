@@ -16,7 +16,8 @@
 		    });
 
             $(document).ready(function() {
-               
+                
+                $('#clearSaved').hide()
                 $('#clearButton').hide()
                 $('#out').hide();
                 $('body').hide();
