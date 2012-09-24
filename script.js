@@ -72,7 +72,8 @@
                             }
                             */
 
-                            //Ashley: Following code adds trail and associated steps to the trail-list div
+                            //Ashley: Following code adds trail and associated steps to the trail-list div. 
+                            //Comment this code if using the of-else code above
                              $('<li></li>').html('<b>' + trail_name[1] + '</b><ul id=step-name' + index + '><li>'+step_name+" : "+this.d+'</li></ul>')
                                           .appendTo('#trail-list');
 
