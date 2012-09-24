@@ -16,14 +16,16 @@
 		    });
 
             $(document).ready(function() {
-                $('#clearBookmarks').hide()
+               
+                $('#clearButton').hide()
                 $('#out').hide();
                 $('body').hide();
                 $('body').fadeIn(750)
 
                 // Load bookmarks for the specified user when the #load-bookmarks form is submitted
                 $('#load-bookmark').submit(function() {
-                    $('#clearBookmarks').fadeIn(750)
+                    $('#clearButton').fadeIn(750);
+                    $('#clearSaved').fadeIn(750);
                     //console.log("i'm in load-bookmark submit call");
 
                     var username = $('#username').val();
@@ -199,14 +201,16 @@
             /*clear bookmarks function (morgan):
             PURPOSE: to remove the list elements in bookmarks
             */
-                function clearBookmarks(){
-                    $('ul').empty();
-                };  
-                $('#clearBookmarks').click(function(){
-                    clearBookmarks();
-                    $('#clearBookmarks').hide();
+                
+                $('#clearButton').click(function(){
+                    $('#bookmarksList').empty();
+                    $('#clearButton').hide();
                 });
 
+                $('#clearSaved').click(function(){
+                    $('#trail-list').empty();
+                    $('#clearSaved').hide();
+                });
             });
 
             function postNote () {
