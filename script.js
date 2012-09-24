@@ -16,14 +16,14 @@
 		    });
 
             $(document).ready(function() {
-
+                $('#clearBookmarks').hide()
                 $('#out').hide();
                 $('body').hide();
                 $('body').fadeIn(750)
 
                 // Load bookmarks for the specified user when the #load-bookmarks form is submitted
                 $('#load-bookmark').submit(function() {
-
+                    $('#clearBookmarks').fadeIn(750)
                     //console.log("i'm in load-bookmark submit call");
 
                     var username = $('#username').val();
@@ -90,7 +90,7 @@
                         }
                         });
                     });
-
+                    
                     return false;
 
                 });
@@ -196,6 +196,16 @@
              });
             */
 
+            /*clear bookmarks function (morgan):
+            PURPOSE: to remove the list elements in bookmarks
+            */
+                function clearBookmarks(){
+                    $('ul').empty();
+                };  
+                $('#clearBookmarks').click(function(){
+                    clearBookmarks();
+                    $('#clearBookmarks').hide();
+                });
 
             });
 
