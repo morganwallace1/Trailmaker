@@ -68,6 +68,9 @@ form {
 body {
 	background-image: url('brain_bkg.gif');
 	background-color:#000000;
-	
+	border-radius: 10px;	
 }
 
+div {
+	border-radius: 10px;
+}
