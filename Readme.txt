@@ -31,7 +31,7 @@ Project description (what it does, how you went about it, etc.)
 3. Links open in iframe viewer when clicked. Also allows notes to be saved on each trail
 
 Delicious username(s) you tested with
-morganwallace, ashleydesouza, kanderek
+morganwallace, ashley_desouza, kanderek
 
 Technologies used on the project
 HTML, CSS, Javascript, JQuery

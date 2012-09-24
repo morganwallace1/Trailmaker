@@ -1,5 +1,10 @@
 // Create an empty global object where we can store settings for connecting to Delicious
 		    var delicious = {};
+            /*
+            Ashley: Following variable declaration was used when trying to implement the step-trail association in trail-list div
+            var temp;
+            var count = 0;
+            */
 
 		    // When users click on a link, open it in a new window
 		    $('a').live('click', function() {
@@ -30,8 +35,7 @@
                             // this.d // description
                             // this.n // extended notes
                             // this.t // array of tags
-                            //console.log(this.d);
-                            //console.log(this.n);
+                            console.log(this.t);
 
                             //Ashley: Code to retrieve the User's Saved Trails
                             $('<li></li>').html('<a href="' + this.u + '">' + this.d + '</a>')
@@ -41,11 +45,35 @@
                                 //.data('user_name', user_name)
                                 //
                                 .appendTo('#bookmarks ul');
-                            
+
+
                             var trail_name = this.t[0].split(":");
+
                             var step_name = this.t[1];
 
-                            $('<li></li>').html(trail_name[1] + "-" + step_name)
+                            /*
+                            Ashley: Following code is not stable. 
+                            Purpose: To associate steps with trails.
+                            if(count === 0)
+                            {
+                                temp=trail_name[1];
+                                $('<li></li>').html('<b>' + trail_name[1] + '</b><ul id=step-name' + index + '><li>'+step_name+" : "+this.d+'</li></ul>')
+                                          .appendTo('#trail-list');
+                                count = count + 1;
+                            }
+                            
+                            else if(temp === trail_name[1]){
+                                $('<li></li>').html(step_name+":"+this.d)
+                                          .appendTo('#step-name');
+                                          count = count + 1;
+                            }
+                            else{
+                                count = 0;
+                            }
+                            */
+
+                            //Ashley: Following code adds trail and associated steps to the trail-list div
+                             $('<li></li>').html('<b>' + trail_name[1] + '</b><ul id=step-name' + index + '><li>'+step_name+" : "+this.d+'</li></ul>')
                                           .appendTo('#trail-list');
 
                         });
@@ -75,6 +103,19 @@
 				});
 
 
+                /*
+                Ashley: Following code is not stable
+                Purpose: To replicte a toggle show-hide funtionality based on click
+                $('#trail-list').click(function(){
+                    console.log($(this).target.id);
+                    if($('#step-name').css('display') == "none"){
+                        $('#step-name').css('display','block')
+                        } 
+                    else {
+                            $('#step-name').css('display','none')
+                        }
+                });
+                */
 
                 $('#save-trails').submit(function() {
                 	// Let's ask the user for a name for the trail
@@ -236,7 +277,8 @@
                 };
 
                    /* function savedtrail(trail){
-                    //Ashley: Adding trails to the Saved Trails form   
+                    Ashley: This code is not stable
+                    Purpose: Adding trails to the Saved Trails form   
                     alert(trail);
                     $('<li></li>').html('<button id="trail-button' + count +'">' + trail + '</button>')
                     //.data('extended', this.n)
