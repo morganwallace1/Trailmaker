@@ -10,6 +10,7 @@ Team member responsibilities (i.e. what each person did on the project)
 -Ashley Desouza: 
   Made feature that shows Saved trails from user's Delicious profile.
   Removed trail tags from previous users  
+  Added code for dragging and dropping bookmarks from bookmarks to new trail and back.
   Debugging
   Formatting
 
@@ -22,13 +23,11 @@ Team member responsibilities (i.e. what each person did on the project)
 -Morgan Wallace: 
 	Hosted/managed repository,
 	Posted to I school website
-  CSS additions and JQuery animations
-  Added clear bookmarks feature
+  	CSS additions and JQuery animations
+  	Added clear bookmarks feature
 	Organized meetings
 	Debugging
 	
-
-Debugging
 
 Project description (what it does, how you went about it, etc.)
 1. Retrieves delicious bookmarks, allows them to be organized into sortable "trails"
@@ -48,6 +47,7 @@ Live URL of where it's hosted (your I School site, personal site, etc.)
 http://morganwallace.com/memex
 
 Browser support (i.e. Does it work in Chrome, Safari, Firefox, .........IE6, etc.)
+Supports All but IE9 shows error in IFrame on load.
 
 Any bugs/quirks we should be aware of:
 The user sign in is not validated.
