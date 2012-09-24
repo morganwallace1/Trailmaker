@@ -18,6 +18,8 @@
             $(document).ready(function() {
 
                 $('#out').hide();
+                $('body').hide();
+                $('body').fadeIn(500)
 
                 // Load bookmarks for the specified user when the #load-bookmarks form is submitted
                 $('#load-bookmark').submit(function() {
