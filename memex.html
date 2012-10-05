@@ -9,9 +9,6 @@
 
         <LINK REL=StyleSheet HREF="memex.css" TYPE="text/css" MEDIA=screen>
 
-        <style type="text/css" >
-            
-        </style>
        
 <!--am I in my branch-->
 
@@ -20,7 +17,7 @@
         <!-- Google-hosted jQuery UI -->
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
 
-		<script type="text/javascript" src ="script.js">
+		<script type="text/javascript" src ="script_memex.js">
 		    
 		</script>
 	</head>
@@ -42,8 +39,8 @@
 
             <div id ="in">
             <form id="sign-in" action="" method="post">
-                <label for="save-username">Username: </label><input id="save-username" type="text" name="save-username" /><br />
-                <label for="save-password">Password:  </label><input id="save-password" type="password" name="save-password" /><br />
+                <input id="save-username" placeholder="Username" type="text" name="save-username" /><br />
+                <input id="save-password" placeholder="Password" type="password" name="save-password" /><br />
                 <input type="submit" name="Log into Delicious" value="Log into Delicious via Memex" id="log-in" />
             </form>
             </div>

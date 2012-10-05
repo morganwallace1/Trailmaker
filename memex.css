@@ -19,12 +19,15 @@
 		        background-color: #ffffff;
 
 }
-
+#trail_notes {
+	width: 94%;
+}
 #access{
 	float: right;
 	text-align: right;
 	width: 20%;
 	margin: 2%;
+	margin-bottom: 0;
 }
 
 #spacer{
@@ -50,25 +53,42 @@ ul {
 	text-align: left;
 
 }
-
+p{
+	margin-top: 0;
+}
 
 form {
 		        margin-bottom: 20px;
 }
 
-#header, #transfer, #preview, #saved-trail{
+#transfer, #preview, #saved-trail{
 	float: left;
 	text-align: center;
-	width: 98%;
-	margin: 1%;
+	width: 90%;
+	margin-right: 5%;
+	margin-left: 5%;
+	margin-top: 2%;
+
+	/*margin-top: 0;
+	margin-left: 0;*/
+	margin-right: 2%;
 	border: 1px solid #666;
 	background-color: #ffffff;
+}
+#header {
+	float: left;
+	width: 100%;
+	border: 1px solid #666;
+	background-color: #500F0F;
+	color: whitesmoke;
+	border-radius: 0;
+	border: none;
+
 }
 
 body {
 	background-image: url('brain_bkg.gif');
-	background-color:#000000;
-	border-radius: 10px;	
+	margin: 0;
 }
 
 div {
@@ -77,4 +97,7 @@ div {
 #clearButton {
 	vertical-align: center;
 	margin-bottom: 5px;
+}
+h1 {
+	margin-bottom: 1%;
 }
